@@ -336,6 +336,7 @@ resource aiservices 'Microsoft.CognitiveServices/accounts@2023-10-01-preview' = 
 var models = reduce(deployments, [], (current, next) => concat(array(current), map(next.models, m => union(m, {aiservicesidx: empty(array(current)) ? 0 : last(array(current)).aiservicesidx + 1}))))
 
 
+@batchSize(1)
 resource gpts 'Microsoft.CognitiveServices/accounts/deployments@2023-10-01-preview' = [for (m ,idx) in models: {
   parent:  aiservices[m.aiservicesidx]
   name: '${idx}-${m.model}'
@@ -352,6 +353,7 @@ resource gpts 'Microsoft.CognitiveServices/accounts/deployments@2023-10-01-previ
   }
 }]
 
+@batchSize(1)
 resource textembeddingada002 'Microsoft.CognitiveServices/accounts/deployments@2023-10-01-preview'  = [for (d, aiservicesidx) in deployments:{
   parent:  aiservices[aiservicesidx]
   name: '${aiservicesidx}-text-embedding-ada-002'
