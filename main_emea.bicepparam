@@ -75,7 +75,7 @@ param teams = {
           {
             model: 'gpt-4'
             version: 'vision-preview'
-            quota: 300
+            quota: 30
           }
           {
             model: 'gpt-35-turbo'
