@@ -9,7 +9,7 @@ param teams object
 
 
 resource hubrg 'Microsoft.Resources/resourceGroups@2022-09-01' =  {
-  name: '${uniqueName}-${teams.hubname}'
+  name: '${uniqueName}-central'
   location: teams.hublocation
 }
 

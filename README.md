@@ -1,14 +1,28 @@
 
 # Example Infra-as-Code to create Intelligent Hack environment
 
+This bicep creates the following structure to support Intelligent Apps Hacks
 
-![alt text](image.png)
+* A single regional AI Hub with linked AI Service containing model deployments
+* A Resource group and AI Project per team, that is linked to the regional Hub
+
+
+![alt text](docs/image.png)
 
 
 ## To Deploy
 
-Using `bicep`, and `subscription` scoped deployment:
+Using `az` cli, and `subscription` scoped deployment:
 
 ```
-az deployment sub create  --parameters main.bicepparam -l westeurope
+TENANT=xx.onmicrosoft.com
+SUBSCRIPTION_ID=xx
+az login --tenant $TENANT
+az account set -s $SUBSCRIPTION_ID
+az deployment sub create  --parameters main_emea.bicepparam -l westeurope
+```
+
+To Deploy the Costly VM Policy restriction
+```
+az deployment sub create  --template-file policy.bicep -l westeurope
 ```

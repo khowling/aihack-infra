@@ -27,7 +27,7 @@ var hubmiPrincipalId = userAssignedHub ? hubmi.properties.principalId : ''
 //***** AI Hub - Dependencies *****
 //-----------------Storage Account Construction-----------------
 resource hubstore 'Microsoft.Storage/storageAccounts@2022-09-01' = {
-  name: 'aihubstore${uniqueName}'
+  name: 'aihubstore${uniqueString(resourceGroup().id)}'
   location: location
   kind: 'StorageV2'
   sku: {
@@ -260,7 +260,7 @@ resource aiservices 'Microsoft.CognitiveServices/accounts@2023-10-01-preview' = 
   }
 
   properties: {
-    customSubDomainName: 'aishop-${uniqueName}'
+    customSubDomainName: 'aiser-${uniqueName}-${d.location}'
     publicNetworkAccess: 'Enabled'
   }
 
@@ -333,13 +333,13 @@ resource aiservices 'Microsoft.CognitiveServices/accounts@2023-10-01-preview' = 
 */
 }]
 
-var models = reduce(deployments, [], (current, next) => concat(array(current), map(next.models, m => union(m, {aiservicesidx: empty(array(current)) ? 0 : last(array(current)).aiservicesidx + 1}))))
+var models = reduce(deployments, [], (current, next) => concat(array(current), map(next.models, m => union(m, {location: next.location, aiservicesidx: empty(array(current)) ? 0 : last(array(current)).aiservicesidx + 1}))))
 
 
 @batchSize(1)
 resource gpts 'Microsoft.CognitiveServices/accounts/deployments@2023-10-01-preview' = [for (m ,idx) in models: {
   parent:  aiservices[m.aiservicesidx]
-  name: '${idx}-${m.model}'
+  name: '${m.model}-${m.location}'
   properties: {
     model: {
       name: m.model
@@ -356,7 +356,7 @@ resource gpts 'Microsoft.CognitiveServices/accounts/deployments@2023-10-01-previ
 @batchSize(1)
 resource textembeddingada002 'Microsoft.CognitiveServices/accounts/deployments@2023-10-01-preview'  = [for (d, aiservicesidx) in deployments:{
   parent:  aiservices[aiservicesidx]
-  name: '${aiservicesidx}-text-embedding-ada-002'
+  name: 'text-embedding-ada-002-${d.location}'
   properties: {
     model: {
       name: 'text-embedding-ada-002'
@@ -365,7 +365,7 @@ resource textembeddingada002 'Microsoft.CognitiveServices/accounts/deployments@2
   }
   sku: {
     name: 'Standard'
-    capacity: 100
+    capacity: 240
   }
   dependsOn: [
     gpts
@@ -451,7 +451,7 @@ resource OpenAI 'Microsoft.CognitiveServices/accounts@2023-05-01' = {
 
 //---------FormRecognizer Construction---------
 resource FormRecognizer 'Microsoft.CognitiveServices/accounts@2023-05-01' = if (false) {
-  name: 'aishop-${uniqueName}'
+  name: 'aifr-${uniqueName}'
   location: location
   kind: 'FormRecognizer'
   sku: {
@@ -469,7 +469,7 @@ resource FormRecognizer 'Microsoft.CognitiveServices/accounts@2023-05-01' = if (
 
 //---------Translator Construction---------
 resource Translator 'Microsoft.CognitiveServices/accounts@2023-05-01' = if (false) {
-  name: 'aishop-${uniqueName}'
+  name: 'trans-${uniqueName}'
   location: location
   kind: 'TextTranslation'
   sku: {
