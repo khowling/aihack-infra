@@ -1,13 +1,13 @@
 using './main.bicep'
 
 // deployments from https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#standard-deployment-model-availability
-param uniqueName = 'h17-emea'
+param uniqueName = 'ms-hack-eu'
 param teams = {
     hublocation: 'northeurope'
     teams: [
       'team-1'
-      'team-2'
-   /*   
+      /*
+      'team-2'  
       'team-3'
       'team-4'
       'team-5'
@@ -28,12 +28,12 @@ param teams = {
           }
           {
             model: 'gpt-35-turbo'
-            version: '1106'
+            version: '0613'
             quota: 240
           }
         ]
       }
-      
+      /*
       {
         location: 'norwayeast'
         models: [
@@ -44,6 +44,7 @@ param teams = {
           }
         ]
       }
+      */
       {
         location: 'swedencentral'
         models: [
@@ -69,6 +70,7 @@ param teams = {
           }
         ]
       }
+      /*
       {
         location: 'switzerlandnorth'
         models: [
@@ -84,7 +86,7 @@ param teams = {
           }
         ]
       }
-      /*
+      
       {
         location: 'uksouth'
         models: [

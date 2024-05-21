@@ -19,10 +19,10 @@ TENANT=xx.onmicrosoft.com
 SUBSCRIPTION_ID=xx
 az login --tenant $TENANT
 az account set -s $SUBSCRIPTION_ID
-az deployment sub create  --parameters main_emea.bicepparam -l westeurope
+az deployment sub create -n <deployment-name> --parameters main_emea.bicepparam --parameters uniqueName=<your-unique-prefix> -l northeurope
 ```
 
 To Deploy the Costly VM Policy restriction
 ```
-az deployment sub create  --template-file policy.bicep -l westeurope
+az deployment sub create  --template-file policy.bicep -l northeurope
 ```
