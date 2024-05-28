@@ -24,7 +24,10 @@ const getSKUs = async (url, limit, items) => {
 
 
 getSKUs(PRICE_URL, SKUS_LESS_THAN_EUR_PER_HOUR, []).then(r => {
-    console.log(r)
+    // view the retailPrice and armSku
+    //console.log(r)
     //console.log (r.sort((a, b) => b.retailPrice - a.retailPrice))
-    //console.log(r.map(i => `'${i.armSkuName}'`).join('\n'))
+
+    // use this output to paste into the policy
+    console.log(r.map(i => `'${i.armSkuName}'`).join('\n'))
 })
