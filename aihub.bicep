@@ -348,7 +348,7 @@ resource gpts 'Microsoft.CognitiveServices/accounts/deployments@2023-10-01-previ
     }
   }
   sku: {
-    name: 'Standard'
+    name: contains(m, 'skuName') ?  m.skuName : 'Standard'
     capacity: m.quota
   }
 }]
@@ -392,6 +392,60 @@ resource aiserviceconnection 'Microsoft.MachineLearningServices/workspaces/conne
     }
   }
 }]
+
+resource aisearchconnection 'Microsoft.MachineLearningServices/workspaces/connections@2024-01-01-preview' = {
+  parent: aihub
+  name: 'aisearch-${uniqueName}-${location}'
+  properties: {
+    authType: 'ApiKey' // 'ManagedIdentity' //'ApiKey'
+    category: 'CognitiveSearch'
+    isSharedToAll: true
+    target: 'https://${aisearch.name}.search.windows.net'
+    
+    credentials: {
+      key: aisearch.listAdminKeys().primaryKey
+      //clientId: hubmi.properties.clientId
+    }
+
+    metadata: {
+      ApiType: 'Azure'
+      ResourceId: aisearch.id
+    }
+  }
+}
+
+@description('The pricing tier of the search service you want to create (for example, basic or standard).')
+param sku string = 'standard'
+
+@description('Replicas distribute search workloads across the service. You need at least two replicas to support high availability of query workloads (not applicable to the free tier).')
+@minValue(1)
+@maxValue(12)
+param replicaCount int = 1
+
+@description('Partitions allow for scaling of document count as well as faster indexing by sharding your index over multiple search units.')
+@allowed([
+  1
+  2
+  3
+  4
+  6
+  12
+])
+param partitionCount int = 1
+
+resource aisearch 'Microsoft.Search/searchServices@2023-11-01' = {
+  name: 'aisearch-${uniqueName}-${location}'
+  location: location
+  sku: {
+    name: sku
+  }
+  properties: {
+    replicaCount: replicaCount
+    partitionCount: partitionCount
+    hostingMode: 'default'
+  }
+}
+
 
 //output openAIEndpoint string = aiservices.properties.endpoints['OpenAI Language Model Instance API']
 //output openAIModel string = modelName

@@ -6,9 +6,9 @@ param teams = {
     hublocation: 'northeurope'
     teams: [
       'team-1'
-      /*
       'team-2'  
       'team-3'
+      /*
       'team-4'
       'team-5'
       'team-6'
@@ -18,6 +18,20 @@ param teams = {
       */
     ]
     deployments: [
+      /*
+      {
+        location: 'eastus2'
+        models: [
+          {
+            model: 'gpt-4o'
+            version: '2024-05-13' 
+            quota: 145
+            skuName: 'Global-Standard'
+          }
+
+        ]
+      }
+      */
       {
         location: 'francecentral'
         models: [
@@ -33,18 +47,16 @@ param teams = {
           }
         ]
       }
-      /*
       {
         location: 'norwayeast'
         models: [
           {
             model: 'gpt-4'
-            version: '1106-Preview'
+            version: '1106-Preview' // 'turbo-2024-04-09'
             quota: 150
           }
         ]
       }
-      */
       {
         location: 'swedencentral'
         models: [
@@ -70,7 +82,6 @@ param teams = {
           }
         ]
       }
-      /*
       {
         location: 'switzerlandnorth'
         models: [
@@ -86,19 +97,18 @@ param teams = {
           }
         ]
       }
-      
       {
         location: 'uksouth'
         models: [
           {
             model: 'gpt-4'
             version: '1106-Preview'
-            quota: 300
+            quota: 80
           }
           {
             model: 'gpt-35-turbo-16k'
             version: '0613'
-            quota: 300
+            quota: 240
           }
         ]
       }
@@ -108,11 +118,11 @@ param teams = {
           {
             model: 'gpt-35-turbo'
             version: '0301'
-            quota: 300
+            quota: 240
           }
         ]
       }
-      */
+      
     ]
   }
 
