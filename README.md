@@ -26,3 +26,15 @@ To Deploy the Costly VM Policy restriction
 ```
 az deployment sub create  --template-file policy.bicep -l northeurope
 ```
+
+
+### To delete examples
+
+```
+for i in $(seq 1 10);
+do
+    rname=project-${uniqueName}-team-${i}
+    echo "Deleting ${rname}..."
+    az resource delete -g ${uniqueName}-team-${i}  --resource-type 'Microsoft.MachineLearningServices/workspaces' -n $rname
+done
+```

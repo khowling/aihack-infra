@@ -34,7 +34,7 @@ module aiprojects 'aiproject.bicep' = [for (team, teamidx) in teams.teams: {
   name: 'deploy-aiproject-${team}'
   scope: teamrgs[teamidx]
   params: {
-    name: 'project-${uniqueName}-${team}'
+    name: 'prj-${uniqueName}-${team}'
     location: teams.hublocation
     aiHubId: aihub.outputs.aiHubId
   }
