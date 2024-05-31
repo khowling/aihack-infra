@@ -365,7 +365,7 @@ resource textembeddingada002 'Microsoft.CognitiveServices/accounts/deployments@2
   }
   sku: {
     name: 'Standard'
-    capacity: 240
+    capacity: contains(d, 'embeddingsQuota') ?  d.embeddingsQuota : 240
   }
   dependsOn: [
     gpts

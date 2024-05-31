@@ -20,21 +20,19 @@ param teams = {
       'team-15'
     ]
     deployments: [
-      /*
+      
       {
         location: 'eastus2'
+        embeddingsQuota: 110
         models: [
           {
             model: 'gpt-4o'
             version: '2024-05-13' 
-            quota: 145
-            skuName: 'Global-Standard'
+            quota: 450
+            skuName: 'GlobalStandard'
           }
-
         ]
       }
-      */
-      /*
       {
         location: 'francecentral'
         models: [
@@ -50,6 +48,7 @@ param teams = {
           }
         ]
       }
+      /*
       {
         location: 'norwayeast'
         models: [
@@ -60,6 +59,7 @@ param teams = {
           }
         ]
       }
+      */
       {
         location: 'swedencentral'
         models: [
@@ -85,6 +85,7 @@ param teams = {
           }
         ]
       }
+      /*
       {
         location: 'switzerlandnorth'
         models: [
@@ -100,6 +101,7 @@ param teams = {
           }
         ]
       }
+      
       {
         location: 'uksouth'
         models: [
@@ -115,6 +117,7 @@ param teams = {
           }
         ]
       }
+      */
       {
         location: 'westeurope'
         models: [
@@ -125,7 +128,6 @@ param teams = {
           }
         ]
       }
-      */
     ]
   }
 
