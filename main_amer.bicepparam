@@ -5,6 +5,12 @@ param teams = {
     hublocation: 'eastus'
     teams: [
       'team-1'
+      'team-2'  
+      'team-3'
+      'team-5'
+      'team-6'
+      'team-7'
+      'team-8'
     ]
     deployments: [
       {
