@@ -47,7 +47,7 @@ param teams = {
           {
             model: 'gpt-4'
             version: '1106-Preview'
-            quota: 40
+            quota: 80
             sku: 'Standard'
           }
         ]
