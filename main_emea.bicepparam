@@ -18,6 +18,7 @@ param teams = {
       'team-13'
       'team-14'
       'team-15'
+      'xuan-99'
     ]
     deployments: [
       
@@ -48,18 +49,6 @@ param teams = {
           }
         ]
       }
-      /*
-      {
-        location: 'norwayeast'
-        models: [
-          {
-            model: 'gpt-4'
-            version: '1106-Preview' // 'turbo-2024-04-09'
-            quota: 150
-          }
-        ]
-      }
-      */
       {
         location: 'swedencentral'
         models: [
@@ -85,39 +74,6 @@ param teams = {
           }
         ]
       }
-      /*
-      {
-        location: 'switzerlandnorth'
-        models: [
-          {
-            model: 'gpt-4'
-            version: 'vision-preview'
-            quota: 30
-          }
-          {
-            model: 'gpt-35-turbo'
-            version: '0613'
-            quota: 300
-          }
-        ]
-      }
-      
-      {
-        location: 'uksouth'
-        models: [
-          {
-            model: 'gpt-4'
-            version: '1106-Preview'
-            quota: 80
-          }
-          {
-            model: 'gpt-35-turbo-16k'
-            version: '0613'
-            quota: 240
-          }
-        ]
-      }
-      */
       {
         location: 'westeurope'
         models: [
