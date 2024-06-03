@@ -5,6 +5,12 @@ param teams = {
     hublocation: 'eastus'
     teams: [
       'team-1'
+      'team-2'  
+      'team-3'
+      'team-5'
+      'team-6'
+      'team-7'
+      'team-8'
     ]
     deployments: [
       {
@@ -41,7 +47,7 @@ param teams = {
           {
             model: 'gpt-4'
             version: '1106-Preview'
-            quota: 40
+            quota: 80
             sku: 'Standard'
           }
         ]
