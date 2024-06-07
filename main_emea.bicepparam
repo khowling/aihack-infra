@@ -21,7 +21,6 @@ param teams = {
       'xuan-99'
     ]
     deployments: [
-      
       {
         location: 'eastus2'
         embeddingsQuota: 110
